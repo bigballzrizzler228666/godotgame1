@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca2rnqh6dkvcm"]
+
+[ext_resource type="Script" uid="uid://drhni42xp1x2a" path="res://fall_area.gd" id="1_46hyc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsrod"]
+size = Vector2(1668, 20)
+
+[node name="FallArea" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_46hyc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 7
+visibility_layer = 7
+position = Vector2(824, 0)
+shape = SubResource("RectangleShape2D_fsrod")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

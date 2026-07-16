@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2btxiewx2gb0"]
+
+[ext_resource type="Script" uid="uid://drewp30dic81l" path="res://sripts/dash_potion.gd" id="1_mekaq"]
+[ext_resource type="Texture2D" uid="uid://br1cd50xrybwu" path="res://assets/sprites/world_tileset.png" id="2_mekaq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2l4mf"]
+radius = 67.2309
+
+[node name="PotionBottle" type="Area2D"]
+scale = Vector2(0.0430489, 0.0399995)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_mekaq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(25.4745, 30.0131)
+texture = ExtResource("2_mekaq")
+region_enabled = true
+region_rect = Rect2(16, 112, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2.76566, 3.03926)
+shape = SubResource("CircleShape2D_2l4mf")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=3 uid="uid://dgkt0cecwh1b5"]
+
+[ext_resource type="Texture2D" uid="uid://ccikpjcxatkrt" path="res://assets/sprites/platforms.png" id="1_sy7ao"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3fcl"]
+size = Vector2(16, 9)
+
+[sub_resource type="Animation" id="Animation_q3fcl"]
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -145.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -146)]
+}
+
+[sub_resource type="Animation" id="Animation_sy7ao"]
+resource_name = "rise"
+length = 4.0
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_q2e0l"]
+resource_name = "risenextpart"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.03333, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -3.5), Vector2(0, -145.5), Vector2(0, -3.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4.03333, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -4), Vector2(0, -146), Vector2(0, -4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q2e0l"]
+_data = {
+&"RESET": SubResource("Animation_q3fcl"),
+&"rise": SubResource("Animation_sy7ao"),
+&"risenextpart": SubResource("Animation_q2e0l")
+}
+
+[node name="platformnextpart" type="AnimatableBody2D"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -145.5)
+shape = SubResource("RectangleShape2D_q3fcl")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -146)
+texture = ExtResource("1_sy7ao")
+region_enabled = true
+region_rect = Rect2(0, 48, 16, 8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_q2e0l")
+}
+autoplay = "risenextpart"

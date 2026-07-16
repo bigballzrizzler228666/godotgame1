@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://dngjg10ifmwq1"]
+
+[ext_resource type="Script" uid="uid://bxc1q66vbcv1o" path="res://control.gd" id="1_brbbq"]
+[ext_resource type="FontFile" uid="uid://ckjawx51ue4ts" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_8n18e"]
+[ext_resource type="FontFile" uid="uid://b6hp74dbxhr82" path="res://assets/fonts/PixelOperator8.ttf" id="3_tjwpk"]
+
+[node name="Control" type="Control" groups=["death_ui"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_brbbq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8n18e")
+text = "YOU DIED"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_tjwpk")
+theme_override_font_sizes/font_size = 8
+text = "Restart"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_tjwpk")
+theme_override_font_sizes/font_size = 8
+text = "Main Menu"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
